@@ -9,25 +9,38 @@ import 'package:bangladesh/rajshahi.dart';
 import 'package:bangladesh/rangpur.dart';
 import 'package:bangladesh/sylhet.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([
+    /* DeviceOrientation.landscapeLeft,
+      DeviceOrientation.landscapeRight,
+*/
+/*
+
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+*/
+  ]);
+
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+
       color: Colors.black,
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title:'Flutter Demo Home Page'),
     );
   }
 }
@@ -42,343 +55,455 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('Division of Bangladesh'),
-          actions: [
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Icon(
-                Icons.home,
-                size: 32,
-                color: Colors.white,
-              ),
-            ),
-          ],
-        ),
-        body: ListView(
-          children: [
-             Container(height: 110,
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(10,5,10,0),
-                child: Card(
-                  shadowColor: Colors.blue,
-                 color: Colors.white,
-                  elevation: 10,
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(10,0,0,5),
-                    child: ListTile(
+      appBar: AppBar(
+        title: Text('Division of Bangladesh'),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Icon(Icons.home),
+          ),
+        ],
+      ),
 
-                      leading: CircleAvatar(maxRadius: 32,backgroundColor: Colors.white,
-                        child: Image.asset('assets/images/Dhaka.png'),
-                      ),
-                      title: Padding(
-                        padding: const EdgeInsets.fromLTRB(0,5,5,0),
-                        child: Text('Dhaka',style: TextStyle(
-                          fontWeight: FontWeight.bold,fontSize: 30,color: Colors.black
+      body: Container(
+           /* height: 600,*/
+          child: GridView.count(
+              crossAxisCount:  2,
+              mainAxisSpacing: 10,
+              crossAxisSpacing:15,
+
+              children: [
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => Dhaka()
+                          )
+                      );
+                    },
+                    child: Card(
+                        elevation: 30,
+                        shadowColor: Colors.green,
+                        color: Colors.purple,
+                        margin: EdgeInsets.all(5),
+
+                        shape: OutlineInputBorder(
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.zero,
+                              topRight: Radius.zero,
+                              bottomRight: Radius.circular(20),
+                              bottomLeft: Radius.circular(20)
+                          ),
+                          borderSide: BorderSide(color: Colors.green,
+                              width: 3
+                          ),
+
+
                         ),
-                        ),
-                      ),
-                      subtitle: Text('The capital of Bangladesh',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,fontSize: 20,color: Colors.green
-                      ),
-                      ),
-                      onTap: (){
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>Dhaka()
-                            ),
-                        );
-                      },
+
+                        child: Center(
+                          child: Container(
+                              width: 200,
+                              height: 300,
+                              decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                      image: AssetImage(
+                                          'assets/images/Sansad.jpg'),
+                                      fit: BoxFit.fitWidth,
+                                      alignment: Alignment.topCenter
+                                  )
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.fromLTRB(0, 116, 2, 2),
+                                child: Center(
+                                  child: Text(' Dhaka'+'  \n  ঢাকা',
+                                    style: TextStyle(
+                                      fontSize: 25,
+                                        color: Colors.white,fontFamily:'Nova Square',
+                                   fontWeight: FontWeight.bold
+                                    ),
+                                  ),
+                                ),
+                              )
+                          ),
+                        )
                     ),
                   ),
-                ),
-              ),
-            ),
-             Container(height: 110,
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(10,5,10,0),
-                child: Card(
-                  shadowColor: Colors.blue,
-                 color: Colors.white,
-                  elevation: 10,
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(10,0,0,5),
-                    child: ListTile(
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => chattogram()
+                          )
+                      );
+                    },
+                    child: Card(
 
-                      leading: CircleAvatar(maxRadius: 32,backgroundColor: Colors.white,
-                        child: Image.asset('assets/images/Chattogram.png'),
-                      ),
-                      title: Padding(
-                        padding: const EdgeInsets.fromLTRB(0,5,5,0),
-                        child: Text('Chattogram',style: TextStyle(
-                          fontWeight: FontWeight.bold,fontSize: 30,color: Colors.black
+                        elevation: 40,
+                        shadowColor: Colors.green,
+                        color: Colors.purple,
+                        margin: EdgeInsets.all(5),
+
+                        shape: OutlineInputBorder(
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.zero,
+                              topRight: Radius.zero,
+                              bottomRight: Radius.circular(20),
+                              bottomLeft: Radius.circular(20)
+                          ),
+                          borderSide: BorderSide(color: Colors.green,
+                              width: 3
+                          ),
+
+
                         ),
-                        ),
-                      ),
-                      subtitle: Text('The capital of Bangladesh',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,fontSize: 20,color: Colors.green
-                      ),
-                      ),
-                      onTap: (){
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>chattogram()
+
+                        child: Center(
+                          child: Container(
+                            width: 200,
+                            height: 200,
+                            decoration: BoxDecoration(
+                                image: DecorationImage(
+                                    image: AssetImage('assets/images/chattogramN.jpg'),
+                                    fit: BoxFit.fitWidth,
+                                    alignment: Alignment.topCenter
+                                )
                             ),
-                        );
-                      },
+                            child: Padding(
+                              padding: const EdgeInsets.fromLTRB(0, 117, 2, 2),
+                              child: Center(
+                                  child: Text('Chattogram'+'\n  চট্টগ্রাম',
+                                    style: TextStyle(
+                                      fontSize: 24, color: Colors.white,fontFamily:'Nova Square',
+                                        fontWeight: FontWeight.bold
+                                    ),
+                                  )
+                              ),
+                            ),
+                          ),
+                        )),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => rajshahi()
+                          )
+                      );
+                    },
+                    child: Card(
+
+                        elevation: 40,
+                        shadowColor: Colors.green,
+                        color: Colors.purple,
+
+                        margin: EdgeInsets.all(5),
+                        shape: OutlineInputBorder(
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.zero,
+                              topRight: Radius.zero,
+                              bottomRight: Radius.circular(20),
+                              bottomLeft: Radius.circular(20)
+                          ),
+                          borderSide: BorderSide(color: Colors.green,
+                              width: 3
+                          ),
+
+
+                        ),
+
+                        child: Center(
+                          child: Container(
+                            width: 200,
+                            height: 200,
+                            decoration: BoxDecoration(
+                                image: DecorationImage(
+                                    image: AssetImage('assets/images/Rajshahipic.jpg'),
+                                    fit: BoxFit.fitWidth,
+                                    alignment: Alignment.topCenter
+                                )
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.fromLTRB(0, 117, 2, 2),
+                              child: Center(
+                                  child: Text('Rajshahi'+'\nরাজশাহী',
+                                    style: TextStyle(
+                                      fontSize: 23, color: Colors.white,fontFamily:'Nova Square',
+                                        fontWeight: FontWeight.bold
+                                    ),
+                                  )
+                              ),
+                            ),
+                          ),
+                        )),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => khulna()
+                          )
+                      );
+                    },
+                    child: Card(
+                        elevation:30,
+                        shadowColor: Colors.green,
+                        color: Colors.purple,
+                        margin: EdgeInsets.all(5),
+
+                        shape: OutlineInputBorder(
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.zero,
+                              topRight: Radius.zero,
+                              bottomRight: Radius.circular(20),
+                              bottomLeft: Radius.circular(20)
+                          ),
+                          borderSide: BorderSide(color: Colors.green,
+                              width: 3
+                          ),
+                        ),
+
+                        child: Center(
+                          child: Container(
+                            width: 200,
+                            height: 200,
+                            decoration: BoxDecoration(
+                                image: DecorationImage(
+                                    image: AssetImage('assets/images/khulnaN.jpg'),
+                                    fit: BoxFit.fitWidth,
+                                    alignment: Alignment.topCenter
+                                )
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.fromLTRB(0, 117, 2, 2),
+                              child: Center(
+                                  child: Text('Khulna '+'\n খুলনা',
+                                    style: TextStyle(
+                                      fontSize: 23, color: Colors.white,fontFamily:'Nova Square',
+                                        fontWeight: FontWeight.bold
+                                    ),
+                                  )
+                              ),
+                            ),
+                          ),
+                        )
                     ),
                   ),
-                ),
-              ),
-            ),
-             Container(height: 110,
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(10,5,10,0),
-                child: Card(
-                  shadowColor: Colors.blue,
-                 color: Colors.white,
-                  elevation: 10,
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(10,0,0,5),
-                    child: ListTile(
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => sylhet()
+                          )
+                      );
+                    },
+                    child: Card(
 
-                      leading: CircleAvatar(maxRadius: 32,backgroundColor: Colors.white,
-                        child: Image.asset('assets/images/rajshahi.png'),
-                      ),
-                      title: Padding(
-                        padding: const EdgeInsets.fromLTRB(0,5,5,0),
-                        child: Text('Rajshahi',style: TextStyle(
-                          fontWeight: FontWeight.bold,fontSize: 30,color: Colors.black
+                        elevation: 40,
+                        shadowColor: Colors.green,
+                        color: Colors.purple,
+                        margin: EdgeInsets.all(5),
+
+                        shape: OutlineInputBorder(
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.zero,
+                              topRight: Radius.zero,
+                              bottomRight: Radius.circular(20),
+                              bottomLeft: Radius.circular(20)
+                          ),
+                          borderSide: BorderSide(color: Colors.green,
+                              width: 3
+                          ),
+
+
                         ),
-                        ),
-                      ),
-                      subtitle: Text('The capital of Bangladesh',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,fontSize: 20,color: Colors.green
-                      ),
-                      ),
-                      onTap: (){
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>rajshahi()
+
+                        child: Center(
+                          child: Container(
+                            width: 200,
+                            height: 200,
+                            decoration: BoxDecoration(
+                                image: DecorationImage(
+                                    image: AssetImage('assets/images/sylhetNP.jpg'),
+                                    fit: BoxFit.fitWidth,
+                                    alignment: Alignment.topCenter
+                                )
                             ),
-                        );
-                      },
+                            child: Padding(
+                              padding: const EdgeInsets.fromLTRB(0, 117, 2, 2),
+                              child: Center(
+                                  child: Text('Sylhet'+'\nসিলেট',
+                                    style: TextStyle(
+                                      fontSize: 24, color: Colors.white,fontFamily:'Nova Square',
+                                        fontWeight: FontWeight.bold
+                                    ),
+                                  )
+                              ),
+                            ),
+                          ),
+                        )),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => barishal()
+                          )
+                      );
+                    },
+                    child: Card(
+
+                        elevation: 40,
+                        shadowColor: Colors.green,
+                        color: Colors.purple,
+                        margin: EdgeInsets.all(5),
+
+                        shape: OutlineInputBorder(
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.zero,
+                              topRight: Radius.zero,
+                              bottomRight: Radius.circular(20),
+                              bottomLeft: Radius.circular(20)
+                          ),
+                          borderSide: BorderSide(color: Colors.green,
+                              width: 3
+                          ),
+                        ),
+
+                        child: Center(
+                          child: Container(
+                            width: 200,
+                            height: 200,
+                            decoration: BoxDecoration(
+                                image: DecorationImage(
+                                    image: AssetImage('assets/images/barishalNPn.jpg'),
+                                    fit: BoxFit.fitWidth,
+                                    alignment: Alignment.topCenter
+                                )
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.fromLTRB(0, 118, 2, 2),
+                              child: Center(
+                                  child: Text('Barishal '+'\n বরিশাল',
+                                    style: TextStyle(
+                                      fontSize: 24, color: Colors.white,fontFamily:'Nova Square',
+                                        fontWeight: FontWeight.bold
+                                    ),
+                                  )
+                              ),
+                            ),
+                          ),
+                        )),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => mymensingh()
+                          )
+                      );
+                    },
+                    child: Card(
+
+                        elevation: 40,
+                        shadowColor: Colors.green,
+                        color: Colors.purple,
+                        margin: EdgeInsets.all(5),
+
+                        shape: OutlineInputBorder(
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.zero,
+                              topRight: Radius.zero,
+                              bottomRight: Radius.circular(20),
+                              bottomLeft: Radius.circular(20)
+                          ),
+                          borderSide: BorderSide(color: Colors.green,
+                              width: 3
+                          ),
+
+                        ),
+
+                        child: Center(
+                          child: Container(
+                            width: 200,
+                            height: 200,
+                            decoration: BoxDecoration(
+                                image: DecorationImage(
+                                    image: AssetImage('assets/images/Mymensinghpic.jpg'),
+                                    fit: BoxFit.fitWidth,
+                                    alignment: Alignment.topCenter
+                                )
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.fromLTRB(0, 117, 2, 2),
+                              child: Center(
+                                  child: Text('Mymensingh'+'\n  ময়মনসিংহ',
+                                    style: TextStyle(
+                                      fontSize: 24, color: Colors.white,fontFamily:'Nova Square',
+                                        fontWeight: FontWeight.bold
+                                    ),
+                                  )
+                              ),
+                            ),
+                          ),
+                        )),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => rangpur()
+                          )
+                      );
+                    },
+                    child: Card(
+
+                        elevation: 40,
+                        shadowColor: Colors.green,
+                        color: Colors.purple,
+                        margin: EdgeInsets.all(5),
+
+                        shape: OutlineInputBorder(
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.zero,
+                              topRight: Radius.zero,
+                              bottomRight: Radius.circular(20),
+                              bottomLeft: Radius.circular(20)
+                          ),
+                          borderSide: BorderSide(color: Colors.green,
+                              width: 3
+                          ),
+                        ),
+
+                        child: Center(
+                          child: Container(
+                            width: 200,
+                            height: 200,
+                            decoration: BoxDecoration(
+                                image: DecorationImage(
+                                    image: AssetImage('assets/images/rangpurpic.jpg'),
+                                    fit: BoxFit.fitWidth,
+                                    alignment: Alignment.topCenter
+                                )
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.fromLTRB(0, 117, 2, 2),
+                              child: Center(
+                                  child: Text('Rangpur'+' \n রংপুর',
+                                    style: TextStyle(
+                                      fontSize: 24, color: Colors.white,fontFamily:'Nova Square',
+                                        fontWeight: FontWeight.bold
+                                    ),
+                                  )
+                              ),
+                            ),
+
+                          ),
+                        )
                     ),
                   ),
-                ),
-              ),
-            ),
-             Container(height: 110,
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(10,5,10,0),
-                child: Card(
-                  shadowColor: Colors.blue,
-                 color: Colors.white,
-                  elevation: 10,
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(10,0,0,5),
-                    child: ListTile(
 
-                      leading: CircleAvatar(maxRadius: 32,backgroundColor: Colors.white,
-                        child: Image.asset('assets/images/Khulna.png'),
-                      ),
-                      title: Padding(
-                        padding: const EdgeInsets.fromLTRB(0,5,5,0),
-                        child: Text('Khulna',style: TextStyle(
-                          fontWeight: FontWeight.bold,fontSize: 30,color: Colors.black
-                        ),
-                        ),
-                      ),
-                      subtitle: Text('The capital of Bangladesh',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,fontSize: 20,color: Colors.green
-                      ),
-                      ),
-                      onTap: (){
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>khulna()
-                            ),
-                        );
-                      },
-                    ),
-                  ),
-                ),
-              ),
-            ),
-             Container(height: 110,
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(10,5,10,0),
-                child: Card(
-                  shadowColor: Colors.blue,
-                 color: Colors.white,
-                  elevation: 10,
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(10,0,0,5),
-                    child: ListTile(
-
-                      leading: CircleAvatar(maxRadius: 32,backgroundColor: Colors.white,
-                        child: Image.asset('assets/images/sylhet.png'),
-                      ),
-                      title: Padding(
-                        padding: const EdgeInsets.fromLTRB(0,5,5,0),
-                        child: Text('Sylhet',style: TextStyle(
-                          fontWeight: FontWeight.bold,fontSize: 30,color: Colors.black
-                        ),
-                        ),
-                      ),
-                      subtitle: Text('The capital of Bangladesh',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,fontSize: 20,color: Colors.green
-                      ),
-                      ),
-                      onTap: (){
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>sylhet()
-                            ),
-                        );
-                      },
-                    ),
-                  ),
-                ),
-              ),
-            ),
-             Container(height: 110,
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(10,5,10,0),
-                child: Card(
-                  shadowColor: Colors.blue,
-                 color: Colors.white,
-                  elevation: 10,
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(10,0,0,5),
-                    child: ListTile(
-
-                      leading: CircleAvatar(maxRadius: 32,backgroundColor: Colors.white,
-                        child: Image.asset('assets/images/mymensingh.png'),
-                      ),
-                      title: Padding(
-                        padding: const EdgeInsets.fromLTRB(0,5,5,0),
-                        child: Text('Mymensingh',style: TextStyle(
-                          fontWeight: FontWeight.bold,fontSize: 30,color: Colors.black
-                        ),
-                        ),
-                      ),
-                      subtitle: Text('The capital of Bangladesh',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,fontSize: 20,color: Colors.green
-                      ),
-                      ),
-                      onTap: (){
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>mymensingh()
-                            ),
-                        );
-                      },
-                    ),
-                  ),
-                ),
-              ),
-            ),
-             Container(height: 110,
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(10,5,10,0),
-                child: Card(
-                  shadowColor: Colors.blue,
-                 color: Colors.white,
-                  elevation: 10,
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(10,0,0,5),
-                    child: ListTile(
-
-                      leading: CircleAvatar(maxRadius: 32,backgroundColor: Colors.white,
-                        child: Image.asset('assets/images/Barishal.png'),
-                      ),
-                      title: Padding(
-                        padding: const EdgeInsets.fromLTRB(0,5,5,0),
-                        child: Text('Barishal',style: TextStyle(
-                          fontWeight: FontWeight.bold,fontSize: 30,color: Colors.black
-                        ),
-                        ),
-                      ),
-                      subtitle: Text('The capital of Bangladesh',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,fontSize: 20,color: Colors.green
-                      ),
-                      ),
-                      onTap: (){
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>barishal()
-                            ),
-                        );
-                      },
-                    ),
-                  ),
-                ),
-              ),
-            ),
-             Container(height: 110,
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(10,5,10,0),
-                child: Card(
-                  shadowColor: Colors.blue,
-                 color: Colors.white,
-                  elevation: 10,
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(10,0,0,5),
-                    child: ListTile(
-
-                      leading: CircleAvatar(maxRadius: 32,backgroundColor: Colors.white,
-                        child: Image.asset('assets/images/Rangpur.png'),
-                      ),
-                      title: Padding(
-                        padding: const EdgeInsets.fromLTRB(0,5,5,0),
-                        child: Text('Rangpur',style: TextStyle(
-                          fontWeight: FontWeight.bold,fontSize: 30,color: Colors.black
-                        ),
-                        ),
-                      ),
-                      subtitle: Text('The capital of Bangladesh',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,fontSize: 20,color: Colors.green
-                      ),
-                      ),
-                      onTap: (){
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>rangpur()
-                            ),
-                        );
-                      },
-                    ),
-                  ),
-                ),
-              ),
-            ),
-
-
-
-
-
-          ],
-        )
+            ],
+          ),
+      )
     );
   }
 }
+
